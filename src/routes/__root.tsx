@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Gen Zee Kids Pre School — Admissions Open 2026-27 | Tirupati" },
       { name: "description", content: "Gen Zee Kids Pre School in Tirupati. Play Group, LKG, UKG & Day Care. A joyful space where children discover, learn, create and thrive." },
       { name: "author", content: "Gen Zee Kids Pre School" },
-      { property: "og:title", content: "Gen Zee Kids Pre School — Tirupati" },
-      { property: "og:description", content: "Admissions Open 2026-27. Play • Learn • Grow • Shine." },
+      { property: "og:title", content: "Gen Zee Kids Pre School — Admissions Open 2026-27 | Tirupati" },
+      { property: "og:description", content: "Gen Zee Kids Pre School in Tirupati. Play Group, LKG, UKG & Day Care. A joyful space where children discover, learn, create and thrive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Gen Zee Kids Pre School — Admissions Open 2026-27 | Tirupati" },
+      { name: "twitter:description", content: "Gen Zee Kids Pre School in Tirupati. Play Group, LKG, UKG & Day Care. A joyful space where children discover, learn, create and thrive." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c470cf0d-9144-4314-bed3-f2ce62a0115f/id-preview-1fcc5bd8--bd9c466c-2275-44de-92db-e3249f3b00f6.lovable.app-1781059641810.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c470cf0d-9144-4314-bed3-f2ce62a0115f/id-preview-1fcc5bd8--bd9c466c-2275-44de-92db-e3249f3b00f6.lovable.app-1781059641810.png" },
     ],
     links: [
       {
