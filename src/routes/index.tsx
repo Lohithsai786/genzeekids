@@ -691,7 +691,30 @@ function Footer() {
   );
 }
 
-function SectionTag({ children, color }: { children: React.ReactNode; color: "primary" | "secondary" | "mint" | "bubblegum" | "sunshine" }) {
+function FloatingButtons() {
+  return (
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:right-6">
+      <a
+        href={`tel:+91${PHONE_1}`}
+        aria-label="Call Gen Zee Kids Pre School"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground shadow-soft flex items-center justify-center hover:scale-110 transition-transform"
+      >
+        <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+      </a>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp Gen Zee Kids Pre School"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-mint text-mint-foreground shadow-warm flex items-center justify-center hover:scale-110 transition-transform"
+      >
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+      </a>
+    </div>
+  );
+}
+
+function SectionTag({ children, color }: { children: ReactNode; color: "primary" | "secondary" | "mint" | "bubblegum" | "sunshine" }) {
   const map: Record<string,string> = {
     primary: "bg-primary/10 text-primary",
     secondary: "bg-secondary/15 text-secondary",
