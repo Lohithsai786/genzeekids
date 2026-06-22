@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState, type FormEvent } from "react";
 import heroKids from "@/assets/hero-kids.jpg";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/gen-zee-logo.webp.asset.json";
+import indoorPlayAsset from "@/assets/indoor-play.jpg.asset.json";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -20,10 +22,20 @@ import {
   Users,
   Star,
   MessageCircle,
-  ArrowRight,
-  Sun,
-  Cloud,
+  Menu,
+  X,
+  Baby,
+  School,
+  Smile,
+  Leaf,
+  Lightbulb,
+  Send,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
+const logo = logoAsset.url;
+const indoorPlay = indoorPlayAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,47 +73,96 @@ const WHATSAPP_URL = `https://wa.me/91${PHONE_1}?text=${encodeURIComponent(
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden scroll-smooth">
       <Nav />
       <Hero />
       <About />
       <Programs />
-      <WhyUs />
-      <Journey />
+      <Facilities />
       <Gallery />
-      <Highlights />
+      <WhyUs />
       <Testimonials />
       <Social />
       <Contact />
       <Footer />
+      <FloatingButtons />
     </div>
   );
 }
 
+const NAV_LINKS = [
+  { label: "Home", href: "#top" },
+  { label: "About", href: "#about" },
+  { label: "Programs", href: "#programs" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Contact", href: "#contact" },
+];
+
 function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#top" className="flex items-center gap-2">
-          <img src={logo} alt="Gen Zee Kids logo" width={40} height={40} className="rounded-full" />
-          <div className="leading-tight">
-            <div className="font-display font-bold text-primary text-lg">Gen Zee Kids</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Pre School</div>
+    <header
+      className={`sticky top-0 z-50 bg-white transition-shadow ${scrolled ? "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.15)]" : ""}`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
+        <a href="#top" className="flex items-center gap-2 min-w-0">
+          <img src={logo} alt="Gen Zee Kids Pre School logo" width={48} height={48} className="h-10 w-10 sm:h-12 sm:w-12 object-contain shrink-0" />
+          <div className="leading-tight min-w-0">
+            <div className="font-display font-bold text-primary text-base sm:text-lg truncate">Gen Zee Kids</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground truncate">Pre School</div>
           </div>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-foreground/80">
-          <a href="#about" className="hover:text-primary transition">About</a>
-          <a href="#programs" className="hover:text-primary transition">Programs</a>
-          <a href="#gallery" className="hover:text-primary transition">Gallery</a>
-          <a href="#contact" className="hover:text-primary transition">Contact</a>
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-primary transition">{l.label}</a>
+          ))}
         </nav>
-        <a
-          href={`tel:+91${PHONE_1}`}
-          className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-4 py-2 text-sm font-bold shadow-warm hover:scale-105 transition"
-        >
-          <Phone className="w-4 h-4" /> Call
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={`tel:+91${PHONE_1}`}
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-4 py-2 text-sm font-bold shadow-warm hover:scale-105 transition"
+          >
+            <Phone className="w-4 h-4" /> Call Now
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-muted text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
+      {open && (
+        <div className="md:hidden border-t bg-white animate-fade-in">
+          <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-3 py-3 rounded-xl text-foreground font-semibold hover:bg-muted"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href={`tel:+91${PHONE_1}`}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-secondary text-secondary-foreground px-4 py-3 font-bold"
+            >
+              <Phone className="w-4 h-4" /> Call Now
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
@@ -112,24 +173,19 @@ function Hero() {
       {/* Decorative blobs */}
       <div className="pointer-events-none absolute -top-24 -left-24 w-96 h-96 bg-sky/50 blob-shape blur-2xl opacity-70" />
       <div className="pointer-events-none absolute top-40 -right-24 w-96 h-96 bg-sunshine/50 blob-shape blur-2xl opacity-70" />
-      <Sun className="absolute top-20 right-10 w-10 h-10 text-secondary animate-wiggle hidden sm:block" />
-      <Cloud className="absolute top-10 left-1/3 w-12 h-12 text-sky/80 animate-float hidden sm:block" />
-
       <div className="container relative mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6 text-center lg:text-left">
+        <div className="space-y-6 text-center lg:text-left animate-fade-in">
           <span className="inline-flex items-center gap-2 rounded-full bg-bubblegum text-bubblegum-foreground px-4 py-1.5 text-xs font-bold uppercase tracking-wider shadow-warm">
             <Sparkles className="w-3.5 h-3.5" /> Admissions Open 2026-27
           </span>
           <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-foreground">
-            A Joyful Space Where Children{" "}
-            <span className="text-primary">Discover</span>,{" "}
-            <span className="text-secondary">Learn</span>,{" "}
-            <span className="text-bubblegum">Create</span> and{" "}
-            <span className="text-mint-foreground bg-mint px-2 rounded-lg">Thrive</span>.
+            Where <span className="text-primary">Little Dreams</span> Begin and{" "}
+            <span className="text-secondary">Bright Futures</span>{" "}
+            <span className="text-mint-foreground bg-mint px-2 rounded-lg">Grow</span>.
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0">
-            Gen Zee Kids Pre School — Tirupati's playful, nurturing home for early
-            learners. Play • Learn • Grow • Shine.
+            A safe, joyful and nurturing preschool where children learn, play,
+            explore and flourish every day.
           </p>
           <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
             <a
@@ -147,12 +203,10 @@ function Hero() {
               <MapPin className="w-4 h-4" /> Get Directions
             </a>
             <a
-              href={IG_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="inline-flex items-center gap-2 rounded-full bg-card border-2 border-bubblegum text-bubblegum px-6 py-3 font-bold hover:bg-bubblegum hover:text-bubblegum-foreground transition"
             >
-              <Instagram className="w-4 h-4" /> Follow Us
+              <MessageCircle className="w-4 h-4" /> Contact Us
             </a>
           </div>
           <div className="flex items-center gap-4 justify-center lg:justify-start pt-4 text-sm text-muted-foreground">
