@@ -30,8 +30,6 @@ import {
   Leaf,
   Lightbulb,
   Send,
-  ChevronLeft,
-  ChevronRight,
   ArrowRight,
 } from "lucide-react";
 
@@ -343,6 +341,53 @@ function Programs() {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const FACILITIES = [
+  { icon: ShieldCheck, title: "Safe Campus", text: "Secure, hygienic spaces designed for young children.", color: "bg-primary text-primary-foreground" },
+  { icon: Baby, title: "Age-Appropriate Care", text: "Gentle routines for preschoolers and day-care children.", color: "bg-bubblegum text-bubblegum-foreground" },
+  { icon: School, title: "Smart Classrooms", text: "Bright classrooms that support play-based learning.", color: "bg-secondary text-secondary-foreground" },
+  { icon: Smile, title: "Indoor Play Zone", text: "Colorful activity corners for movement and imagination.", color: "bg-mint text-mint-foreground" },
+  { icon: Leaf, title: "Healthy Atmosphere", text: "Clean surroundings that help children feel comfortable.", color: "bg-sunshine text-sunshine-foreground" },
+  { icon: Lightbulb, title: "Creative Learning", text: "Activities that build curiosity, confidence and expression.", color: "bg-sky text-sky-foreground" },
+];
+
+function Facilities() {
+  return (
+    <section id="facilities" className="py-20 bg-gradient-to-br from-sunshine/20 via-background to-mint/25">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+          <div className="space-y-5">
+            <SectionTag color="sunshine">Facilities</SectionTag>
+            <h2 className="text-3xl sm:text-4xl font-bold">A bright, safe and joyful place for every child</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Our preschool environment is thoughtfully planned for comfort, safety,
+              creativity and confident early learning.
+            </p>
+            <img
+              src={indoorPlay}
+              alt="Indoor play area at Gen Zee Kids Pre School"
+              width={900}
+              height={650}
+              loading="lazy"
+              className="rounded-[2rem] shadow-soft w-full aspect-[4/3] object-cover border-4 border-card"
+            />
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {FACILITIES.map((facility) => (
+              <div key={facility.title} className="bg-card rounded-3xl p-5 shadow-soft hover:-translate-y-1 transition-transform">
+                <div className={`w-12 h-12 rounded-2xl ${facility.color} flex items-center justify-center mb-4`}>
+                  <facility.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">{facility.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{facility.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
