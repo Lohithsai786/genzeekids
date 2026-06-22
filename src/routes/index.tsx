@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import heroKids from "@/assets/hero-kids.jpg";
 import logoAsset from "@/assets/gen-zee-logo.webp.asset.json";
 import indoorPlayAsset from "@/assets/indoor-play.jpg.asset.json";
@@ -30,8 +30,7 @@ import {
   Leaf,
   Lightbulb,
   Send,
-  ChevronLeft,
-  ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 
 const logo = logoAsset.url;
@@ -348,6 +347,53 @@ function Programs() {
   );
 }
 
+const FACILITIES = [
+  { icon: ShieldCheck, title: "Safe Campus", text: "Secure, hygienic spaces designed for young children.", color: "bg-primary text-primary-foreground" },
+  { icon: Baby, title: "Age-Appropriate Care", text: "Gentle routines for preschoolers and day-care children.", color: "bg-bubblegum text-bubblegum-foreground" },
+  { icon: School, title: "Smart Classrooms", text: "Bright classrooms that support play-based learning.", color: "bg-secondary text-secondary-foreground" },
+  { icon: Smile, title: "Indoor Play Zone", text: "Colorful activity corners for movement and imagination.", color: "bg-mint text-mint-foreground" },
+  { icon: Leaf, title: "Healthy Atmosphere", text: "Clean surroundings that help children feel comfortable.", color: "bg-sunshine text-sunshine-foreground" },
+  { icon: Lightbulb, title: "Creative Learning", text: "Activities that build curiosity, confidence and expression.", color: "bg-sky text-sky-foreground" },
+];
+
+function Facilities() {
+  return (
+    <section id="facilities" className="py-20 bg-gradient-to-br from-sunshine/20 via-background to-mint/25">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+          <div className="space-y-5">
+            <SectionTag color="sunshine">Facilities</SectionTag>
+            <h2 className="text-3xl sm:text-4xl font-bold">A bright, safe and joyful place for every child</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Our preschool environment is thoughtfully planned for comfort, safety,
+              creativity and confident early learning.
+            </p>
+            <img
+              src={indoorPlay}
+              alt="Indoor play area at Gen Zee Kids Pre School"
+              width={900}
+              height={650}
+              loading="lazy"
+              className="rounded-[2rem] shadow-soft w-full aspect-[4/3] object-cover border-4 border-card"
+            />
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {FACILITIES.map((facility) => (
+              <div key={facility.title} className="bg-card rounded-3xl p-5 shadow-soft hover:-translate-y-1 transition-transform">
+                <div className={`w-12 h-12 rounded-2xl ${facility.color} flex items-center justify-center mb-4`}>
+                  <facility.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">{facility.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{facility.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const WHY = [
   { icon: Heart, title: "Loving & Caring Environment", color: "bg-bubblegum text-bubblegum-foreground" },
   { icon: GraduationCap, title: "Experienced & Qualified Teachers", color: "bg-mint text-mint-foreground" },
@@ -645,7 +691,30 @@ function Footer() {
   );
 }
 
-function SectionTag({ children, color }: { children: React.ReactNode; color: "primary" | "secondary" | "mint" | "bubblegum" | "sunshine" }) {
+function FloatingButtons() {
+  return (
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:right-6">
+      <a
+        href={`tel:+91${PHONE_1}`}
+        aria-label="Call Gen Zee Kids Pre School"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground shadow-soft flex items-center justify-center hover:scale-110 transition-transform"
+      >
+        <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+      </a>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp Gen Zee Kids Pre School"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-mint text-mint-foreground shadow-warm flex items-center justify-center hover:scale-110 transition-transform"
+      >
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+      </a>
+    </div>
+  );
+}
+
+function SectionTag({ children, color }: { children: ReactNode; color: "primary" | "secondary" | "mint" | "bubblegum" | "sunshine" }) {
   const map: Record<string,string> = {
     primary: "bg-primary/10 text-primary",
     secondary: "bg-secondary/15 text-secondary",
