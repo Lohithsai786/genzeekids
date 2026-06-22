@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import heroKids from "@/assets/hero-kids.jpg";
 import logoAsset from "@/assets/gen-zee-logo.webp.asset.json";
 import indoorPlayAsset from "@/assets/indoor-play.jpg.asset.json";
@@ -32,6 +32,7 @@ import {
   Send,
   ChevronLeft,
   ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 
 const logo = logoAsset.url;
