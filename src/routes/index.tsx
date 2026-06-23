@@ -6,7 +6,6 @@ import indoorPlayAsset from "@/assets/indoor-play.jpg.asset.json";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2Asset from "@/assets/gallery-2.jpg.asset.json";
 import gallery3Asset from "@/assets/gallery-3.jpg.asset.json";
-import gallery4 from "@/assets/gallery-4.jpg";
 import {
   Phone,
   MapPin,
@@ -468,7 +467,6 @@ const GALLERY = [
   { src: gallery1, label: "Play Area" },
   { src: gallery2Asset.url, label: "Happy Father's Day Board" },
   { src: gallery3Asset.url, label: "Welcome Display" },
-  { src: gallery4, label: "Day Care Activities" },
 ];
 
 function Gallery() {
