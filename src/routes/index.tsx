@@ -4,8 +4,8 @@ import heroKids from "@/assets/hero-kids.jpg";
 import logoAsset from "@/assets/gen-zee-logo.webp.asset.json";
 import indoorPlayAsset from "@/assets/indoor-play.jpg.asset.json";
 import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
+import gallery2Asset from "@/assets/gallery-2.jpg.asset.json";
+import gallery3Asset from "@/assets/gallery-3.jpg.asset.json";
 import gallery4 from "@/assets/gallery-4.jpg";
 import {
   Phone,
@@ -108,7 +108,7 @@ function Nav() {
   }, []);
   return (
     <header
-      className={`sticky top-0 z-50 bg-white transition-shadow ${scrolled ? "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.15)]" : ""}`}
+      className={`fixed top-0 inset-x-0 z-50 bg-white transition-shadow ${scrolled ? "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.15)]" : "shadow-[0_2px_10px_-6px_rgba(0,0,0,0.08)]"}`}
     >
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
         <a href="#top" className="flex items-center gap-2 min-w-0">
@@ -465,8 +465,8 @@ function Journey() {
 
 const GALLERY = [
   { src: gallery1, label: "Play Area" },
-  { src: gallery2, label: "Art & Craft" },
-  { src: gallery3, label: "Learning Sessions" },
+  { src: gallery2Asset.url, label: "Happy Father's Day Board" },
+  { src: gallery3Asset.url, label: "Welcome Display" },
   { src: gallery4, label: "Day Care Activities" },
 ];
 
