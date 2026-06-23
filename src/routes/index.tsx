@@ -74,6 +74,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden scroll-smooth">
       <Nav />
+      <div className="h-16 sm:h-20" aria-hidden />
       <Hero />
       <About />
       <Programs />
